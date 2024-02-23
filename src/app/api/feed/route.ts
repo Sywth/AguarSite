@@ -3,10 +3,16 @@ import { NextResponse, NextRequest } from "next/server";
 
 const GET = async (req: NextRequest) => {
   const newYorkTimesFetchUrl = `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${process.env.NEW_YORK_TIMES_API_KEY}`;
-  const data = (await (
-    await fetch(newYorkTimesFetchUrl)
-  ).json()) as AguarFeedResponse;
-  return NextResponse.json(data, { status: 200 });
+  const response = await fetch(newYorkTimesFetchUrl, { cache: "force-cache" });
+  let responseTimeStamp = response.headers.get("date");
+  if (responseTimeStamp === null) {
+    responseTimeStamp = "Unknown";
+  }
+  const jsonData = {
+    ...(await response.json()),
+    responseTimeStamp,
+  } as AguarFeedResponse;
+  return NextResponse.json(jsonData, { status: 200 });
 };
 
 export { GET };

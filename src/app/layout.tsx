@@ -25,7 +25,7 @@ const Body: React.FC<BodyProps> = ({ children }) => {
     <body
       className={cn(
         inter.className,
-        " text-grey text-stone-900 dark:text-zinc-50 bg-zinc-50 dark:bg-black"
+        "text-grey text-stone-900 dark:text-zinc-50 bg-zinc-50 dark:bg-black"
       )}
     >
       <BodyProviders>

@@ -5,6 +5,7 @@ export interface AguarFeedResponse {
   last_updated: string;
   num_results: number;
   results: AguarFeedResult[];
+  responseTimeStamp: string;
 }
 
 export interface AguarFeedResult {

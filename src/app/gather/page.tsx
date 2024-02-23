@@ -8,7 +8,7 @@ const Gather: React.FC<GatherProps> = ({}) => {
   return (
     <div>
       <PalantirTextEffect text={"OSINT"} />
-      <div>This is work in progress. As of now it does nothing</div>
+      <div className="text-4xl py-16">Under development</div>
       {/* <GatherCreationForm /> */}
     </div>
   );

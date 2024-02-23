@@ -9,13 +9,26 @@ const HomePageContent = () => {
     <>
       <div className="pt-4 pb-16 ">
         <PalantirTextEffect
-          text={"A tool for the masses"}
-          className="text-7xl pb-8 px-4"
+          text={"A tool for the "}
+          extraWords={[
+            "masses",
+            "investment banker",
+            "rice farmer",
+            "politician",
+            "journalist",
+            "scientist",
+            "wood worker",
+            "government",
+            "church",
+            "worshiper",
+          ]}
+          extraWordDisplayTimeMs={2000}
+          className="text-3xl sm:text-5xl md:text-7xl pb-8 px-4"
           durationMs={1000}
-          intialDelay={1000}
+          intialDelay={2000}
         />
         <Image
-          className="w-[80vw] h-[60vh] object-cover invert dark:invert-0"
+          className="sm:w-[80vw] sm:h-[60vh] object-cover invert dark:invert-0"
           src="/hero-mask.jpg"
           width={800}
           height={400}

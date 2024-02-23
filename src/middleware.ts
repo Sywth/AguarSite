@@ -1,7 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
-  publicRoutes: ["/", "/api/(.*)"],
+  publicRoutes: ["/"],
 });
 
 // means all routes are private except for stuff like trpc, api ... etc

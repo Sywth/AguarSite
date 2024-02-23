@@ -13,12 +13,12 @@ const ActionableItem: React.FC<ActionableItemProps> = ({
   forwardLink,
 }) => {
   return (
-    <div className="grid grid-cols-2 text-xl py-12">
+    <div className="grid md:grid-cols-2 text-xl py-12">
       <div className="flex flex-row space-x-12 justify-start items-start">
         <MdSubdirectoryArrowRight className="ml-4" size={25} />
         <h3 className="text-4xl">{title}</h3>
       </div>
-      <div className="grid grid-cols-2 items-start">
+      <div className="grid md:grid-cols-2 items-start">
         <p>{tagline}</p>
         <a
           className="mx-4 ml-auto hover:bg-stone-900 hover:text-slate-200 dark:hover:bg-stone-50 dark:hover:text-black "
@@ -58,7 +58,7 @@ const CallToAction = () => {
         title="API"
         tagline={"Learn about the API"}
         forwardText={"Learn"}
-        forwardLink={"/"}
+        forwardLink={"/api-dashboard"}
       />
     </div>
   );

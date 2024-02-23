@@ -1,4 +1,5 @@
 "use client";
+import PalantirTextEffect from "@/components/PalantirTextEffect";
 import useApiUrl from "@/hooks/useApiUrl";
 import React, { useEffect } from "react";
 import io from "socket.io-client";
@@ -6,8 +7,8 @@ import io from "socket.io-client";
 const Playground = () => {
   return (
     <>
-      <div>Playground page</div>
-      <div>This is work in progress. As of now it does nothing</div>
+      <PalantirTextEffect text={"Playground"} />
+      <div className="text-4xl py-16">Under development</div>
     </>
   );
 };

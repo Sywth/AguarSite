@@ -11,7 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ ...props }) => {
       <div className="flex justify-between items-start">
         <Link
           className="flex flex-row justify-center items-center hover:bg-zinc-500 pr-4"
-          href="/sign-in"
+          href="/"
         >
           <Logo className="h-12 w-12 px-3" />
           <div className="text-2xl font-medium  duration-75">Aguar</div>

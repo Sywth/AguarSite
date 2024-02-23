@@ -7,7 +7,7 @@ type BodyProvidersProps = {
 };
 const BodyProviders: React.FC<BodyProvidersProps> = ({ children }) => {
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" defaultTheme="light">
       {children}
       <Toaster />
     </ThemeProvider>

@@ -50,7 +50,8 @@ const NavbarSignInOut: React.FC<NavbarSignInOutProps> = ({
       >
         sign out
       </button>
-      <ThemeToggle className="px-4 mx-4 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-50 dark:hover:text-black " />
+
+      <ThemeToggle className="px-4 mx-4 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-50 dark:hover:text-black cursor-pointer" />
     </div>
   );
 };
