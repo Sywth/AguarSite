@@ -1,6 +1,7 @@
 "use client";
 import { sleep } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
+import shuffleArray from "shuffle-array";
 
 type PalantirTextEffectProps = React.HTMLProps<HTMLDivElement> & {
   text: string;
@@ -41,6 +42,8 @@ const PalantirTextEffect: React.FC<PalantirTextEffectProps> = ({
       return;
     }
 
+    extraWords = shuffleArray(extraWords);
+
     // logic for writing out and removing extra words
     for (let wordIndex = 0; wordIndex < extraWords.length; wordIndex++) {
       const currentWord = extraWords[wordIndex];
@@ -49,7 +52,7 @@ const PalantirTextEffect: React.FC<PalantirTextEffectProps> = ({
         setDisplayText(text + currentWord.slice(0, i + 1));
       }
 
-      await sleep(extraWordDisplayTimeMs);
+      await sleep(extraWordDisplayTimeMs ? extraWordDisplayTimeMs : 2000);
 
       // delete it
       for (let i = currentWord.length - 1; i >= 0; i--) {
