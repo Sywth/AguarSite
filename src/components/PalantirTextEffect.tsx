@@ -28,7 +28,9 @@ const PalantirTextEffect: React.FC<PalantirTextEffectProps> = ({
 }) => {
   const [displayText, setDisplayText] = useState("");
   const timePerLetter = durationMs / text.length;
-  extraWordDisplayTimeMs = extraWordDisplayTimeMs || 2000;
+  extraWordDisplayTimeMs = extraWordDisplayTimeMs
+    ? extraWordDisplayTimeMs
+    : 2000;
 
   const memoizedExtraWords = useMemo(() => extraWords, [extraWords]);
 
@@ -59,7 +61,7 @@ const PalantirTextEffect: React.FC<PalantirTextEffectProps> = ({
         setDisplayText(text + currentWord.slice(0, i + 1));
       }
 
-      await sleep(extraWordDisplayTimeMs);
+      await sleep(extraWordDisplayTimeMs ? extraWordDisplayTimeMs : 2000);
 
       // delete it
       for (let i = currentWord.length - 1; i >= 0; i--) {
