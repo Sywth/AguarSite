@@ -60,6 +60,7 @@ const StorySummary = ({
   );
 };
 
+export const dynamic = "force-dynamic";
 export const HomeFeed = () => {
   const { data, error, isLoading } = useQuery<AguarFeedResponse, Error>({
     queryKey: ["feed"],
@@ -106,6 +107,11 @@ export const HomeFeed = () => {
                 abstract: story.abstract,
                 date: story.published_date,
               };
+
+              if (!story.multimedia) {
+                return null;
+              }
+
               if (story.multimedia.length >= 1) {
                 storyProps = {
                   ...storyProps,
