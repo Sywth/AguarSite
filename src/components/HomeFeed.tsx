@@ -98,7 +98,8 @@ export const HomeFeed = () => {
         {'Courtesy of the "New York Times"'}
       </Link>
       <div className="grid grid-cols-1 lg:px-8 space-y-12 md:space-y-24">
-        {feed !== undefined &&
+        {feed &&
+          feed.results &&
           shuffleArray(feed.results)
             .slice(0, 10)
             .map((story, index) => {
