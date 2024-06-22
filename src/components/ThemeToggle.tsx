@@ -23,7 +23,7 @@ const ThemeToggle = ({ className }: { className: string }) => {
         });
       }}
     >
-      theme is :{" " + themeText}
+      theme is {" " + themeText}
     </div>
   );
 };

@@ -4,6 +4,9 @@ import React from "react";
 import ThemeToggle from "../ThemeToggle";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { button_tw_css } from "../style_constants";
+import TextDivider from "../TextDivider";
 
 type NavbarSignInOutProps = React.HTMLProps<HTMLDivElement> & {};
 
@@ -23,35 +26,25 @@ const NavbarSignInOut: React.FC<NavbarSignInOutProps> = ({
 
   return (
     <div className="flex flex-row justify-end font-mono">
-      <Link
-        className={
-          `mx-4 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-50 dark:hover:text-black ` +
-          (isSignedIn ? "line-through" : "")
-        }
-        href="/sign-in"
-      >
-        sign in
-      </Link>
-      <Link
-        className={
-          `mx-4 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-50 dark:hover:text-black ` +
-          (isSignedIn ? "line-through" : "")
-        }
-        href="/sign-up"
-      >
-        sign up
-      </Link>
-      <button
-        className={
-          `mx-4 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-50 dark:hover:text-black ` +
-          (isSignedIn ? "" : "line-through")
-        }
-        onClick={handleSignOut}
-      >
-        sign out
-      </button>
+      <ThemeToggle className={cn(button_tw_css, `px-4 cursor-pointer`)} />
 
-      <ThemeToggle className="px-4 mx-4 hover:bg-stone-900 hover:text-white dark:hover:bg-stone-50 dark:hover:text-black cursor-pointer" />
+      <div children="|" />
+      {!isSignedIn && (
+        <>
+          <Link className={button_tw_css} href="/sign-in">
+            sign in
+          </Link>
+          <TextDivider className="pr-1" />
+          <Link className={button_tw_css} href="/sign-up">
+            sign up
+          </Link>
+        </>
+      )}
+      {isSignedIn && (
+        <button className={button_tw_css} onClick={handleSignOut}>
+          sign out
+        </button>
+      )}
     </div>
   );
 };

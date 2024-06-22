@@ -3,6 +3,8 @@ import CallToAction from "@/components/CallToAction";
 import HeroImage from "@/components/HeroImage";
 import { HomeFeed } from "@/components/HomeFeed";
 import PalantirTextEffect from "@/components/PalantirTextEffect";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Terminal } from "lucide-react";
 
 const HomePageContent = () => {
   return (

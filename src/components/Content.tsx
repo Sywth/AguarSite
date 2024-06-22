@@ -9,7 +9,7 @@ const Content: React.FC<ContentProps> = ({ children, className, ...props }) => {
       className={cn("max-w-[90vw] sm:max-w-[80vw] mx-auto pb-16", className)}
       {...props}
     >
-      <div className="flex flex-col pt-16">{children}</div>
+      <div className="flex flex-col pt-16 ">{children}</div>
     </div>
   );
 };

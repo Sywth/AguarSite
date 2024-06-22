@@ -29,7 +29,7 @@ const Body: React.FC<BodyProps> = ({ children }) => {
       )}
     >
       <BodyProviders>
-        <Navbar className="px-4 pt-4 bg-stone-100 dark:bg-slate-950 sticky top-0 z-10" />
+        <Navbar className="px-4 pt-4 bg-zinc-50 dark:bg-neutral-950 sticky top-0 z-10" />
         <main className="text-5xl">
           <Content>{children}</Content>
         </main>
