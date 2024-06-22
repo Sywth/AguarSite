@@ -7,7 +7,7 @@ const Gather = () => {
   return (
     <>
       <PalantirTextEffect className="pl-8" text={"Gather"} />
-      {/* <div className="text-4xl py-16">Gather intelligence on a user</div> */}
+      <div className="text-4xl py-16">Under development</div>
       <HitScreen />
     </>
   );
