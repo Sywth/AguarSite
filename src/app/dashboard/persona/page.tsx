@@ -1,13 +1,14 @@
 import PalantirTextEffect from "@/components/PalantirTextEffect";
 import React from "react";
+import PersonaCreationForm from "./PersonaCreationForm";
 
-const Gather = () => {
+const Persona = () => {
   return (
     <>
-      <PalantirTextEffect text={"OSINT"} />
+      <PalantirTextEffect className="pl-8" text={"Persona"} />
       <div className="text-4xl py-16">Under development</div>
     </>
   );
 };
 
-export default Gather;
+export default Persona;

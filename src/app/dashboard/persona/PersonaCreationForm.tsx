@@ -1,5 +1,6 @@
 "use client";
 
+import { button_tw_css } from "@/components/style_constants";
 import {
   Form,
   FormControl,
@@ -10,6 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -55,7 +57,7 @@ const PersonaCreationForm = () => {
             </FormItem>
           )}
         />
-        <button className="text-xl font-mono">Submit</button>
+        <button className={cn(`text-xl`, button_tw_css)}>Submit</button>
       </form>
     </Form>
   );

@@ -20,8 +20,8 @@ const NavbarLogo: React.FC<NavbarLogoProps> = ({ className }) => {
       <Logo className="h-12 w-12 px-3" />
       <TextDivider className="pr-1" />
       <div className="flex flex-row text-2xl space-x-4">
-        <NavbarUserInfo className="" />
         <div className="">Aguar</div>
+        <NavbarUserInfo />
       </div>
     </Link>
   );

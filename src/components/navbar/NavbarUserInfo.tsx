@@ -14,14 +14,9 @@ const NavbarUserInfo: React.FC<NavbarUserInfoProps> = ({
   return (
     <>
       {isSignedIn && (
-        <div className="flex flex-row space-x-4">
-          <div children="[" className="italic font-mono" />
-          <div
-            className={cn("", className)}
-            children={`user ${user?.username}`}
-          />
-          <div children="]" className="italic font-mono" />
-          <div children="~" className="font-mono" />
+        <div className="flex flex-row space-x-4 font-light ">
+          <div children="-" className="" />
+          <div className={className} children={`user ${user?.username}`} />
         </div>
       )}
     </>

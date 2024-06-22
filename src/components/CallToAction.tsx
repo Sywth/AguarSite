@@ -38,13 +38,13 @@ const CallToAction = () => {
         title="Persona"
         tagline={"Create a persona to interact with"}
         forwardText={"Create"}
-        forwardLink={"/persona"}
+        forwardLink={"/dashboard/persona"}
       />
       <ActionableItem
         title="OSINT"
         tagline={"Gather data from open sources to create a persona"}
         forwardText={"Gather"}
-        forwardLink={"/gather"}
+        forwardLink={"/dashboard/gather"}
       />
       <ActionableItem
         title="Playground"
@@ -52,13 +52,13 @@ const CallToAction = () => {
           "Replicate a persona, test with different scenarios and response strategies"
         }
         forwardText={"Replicate"}
-        forwardLink={"/playground"}
+        forwardLink={"/dashboard/playground"}
       />
       <ActionableItem
         title="API"
         tagline={"Learn about the API"}
         forwardText={"Learn"}
-        forwardLink={"/api-dashboard"}
+        forwardLink={"/dashboard/api-dashboard"}
       />
     </div>
   );

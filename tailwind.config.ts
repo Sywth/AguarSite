@@ -34,7 +34,10 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
+  daisyui: {
+    base: false, // applies background color and foreground color for root element by default
+  },
 } satisfies Config;
 
 export default config;
