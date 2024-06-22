@@ -41,6 +41,9 @@ const HitScreen: React.FC<HitScreenProps> = ({}) => {
     },
   });
 
+  // Proof of concept for streaming data
+  // TODO : Implement a better way to handle streaming data
+  // TODO : Then stream the actual data we want
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(

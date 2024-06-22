@@ -28,7 +28,7 @@ const NavbarSignInOut: React.FC<NavbarSignInOutProps> = ({
     <div className="flex flex-row justify-end font-mono">
       <ThemeToggle className={cn(button_tw_css, `px-4 cursor-pointer`)} />
 
-      <div children="|" />
+      <div>|</div>
       {!isSignedIn && (
         <>
           <Link className={button_tw_css} href="/sign-in">
