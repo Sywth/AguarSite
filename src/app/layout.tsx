@@ -21,6 +21,7 @@ type BodyProps = {
   children: React.ReactNode;
 };
 const Body: React.FC<BodyProps> = ({ children }) => {
+  console.log(inter.className);
   return (
     <body
       className={cn(

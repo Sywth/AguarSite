@@ -43,7 +43,9 @@ const StorySummary = ({
             alt={imageAlt}
           />
         )}
-        <h4 className="font-mono px-1 pt-1 italic">{imageAlt}</h4>
+        <h4 className="hidden md:block font-mono px-1 pt-1 italic">
+          {imageAlt}
+        </h4>
       </div>
       <div className="flex flex-col px-4 lg:px-8">
         {isOnScreen && (

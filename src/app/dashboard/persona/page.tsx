@@ -5,7 +5,7 @@ import PersonaCreationForm from "./PersonaCreationForm";
 const Persona = () => {
   return (
     <>
-      <PalantirTextEffect className="pl-8" text={"Persona"} />
+      <PalantirTextEffect className="md:pl-8" text={"Persona"} />
       <div className="text-4xl py-16">Under development</div>
     </>
   );

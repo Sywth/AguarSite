@@ -40,3 +40,16 @@ export interface AguarFeedMultimedia {
   caption: string;
   copyright: string;
 }
+
+export interface AguarHit {
+  success: boolean;
+  url: string;
+  found_links: string[];
+  found_images: string[];
+  found_emails: string[];
+  found_phone_numbers: string[];
+}
+
+export interface Aguar404 {
+  detail: string;
+}
