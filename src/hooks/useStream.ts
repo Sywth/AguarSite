@@ -1,5 +1,5 @@
 import { uuid } from "uuidv4";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const currentStreams = new Set<string>();
 
@@ -14,12 +14,12 @@ const useStream = (
   const response = useRef<Response | null>(null);
   const reader = useRef<ReadableStreamDefaultReader<Uint8Array> | null>(null);
 
-  const cleanUpLogic = () => {
+  const cleanUpLogic = useCallback(() => {
     currentStreams.delete(streamId);
     onEnd();
-  };
+  }, [streamId]);
 
-  const fetchThenProcess = async () => {
+  const fetchThenProcess = useCallback(async () => {
     if (currentStreams.has(streamId)) {
       return;
     }
@@ -39,14 +39,14 @@ const useStream = (
     }
     currentStreams.delete(streamId);
     cleanUpLogic();
-  };
+  }, [url, streamId]);
 
   useEffect(() => {
     onStart();
     fetchThenProcess();
 
     return cleanUpLogic;
-  }, [streamId]);
+  }, [streamId, fetchThenProcess, cleanUpLogic]);
 };
 
 export { useStream };

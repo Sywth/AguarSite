@@ -24,7 +24,7 @@ const HeroImage: React.FC<HeroImageProps> = ({}) => {
   const [image, setImage] = useState<[string, string]>(["", ""]);
   useEffect(() => {
     setImage(PossibleImages[Math.floor(Math.random() * PossibleImages.length)]);
-  });
+  }, []);
 
   return (
     <div className="grid grid-row-2 gap-6">
