@@ -6,7 +6,7 @@ import Logo from "../../../public/svgs/Logo";
 import NavbarQuickLinks from "./NavbarQuickLinks";
 import { cn } from "@/lib/utils";
 import TextDivider from "../TextDivider";
-import { hover_tw_css } from "../styleConstants";
+import { hover_tw_css } from "../../lib/styleConstants";
 
 type NavbarLogoProps = {
   className?: string;

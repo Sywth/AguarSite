@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useRef } from "react";
-
 const currentStreams = new Set<string>();
 
-const useStream = (
+const streamData = async (
   url: string,
   getRequestInit: () => Promise<RequestInit | undefined>,
   callback: (chunk_value: Uint8Array) => void,
@@ -10,47 +8,51 @@ const useStream = (
   onEnd: () => void,
   streamId: string
 ) => {
-  const response = useRef<Response | null>(null);
-  const reader = useRef<ReadableStreamDefaultReader<Uint8Array> | null>(null);
-
-  const cleanUpLogic = useCallback(() => {
+  const cleanUpLogic = () => {
     currentStreams.delete(streamId);
-  }, [streamId]);
+  };
 
-  const fetchThenProcess = useCallback(async () => {
+  const fetchThenProcess = async () => {
     if (currentStreams.has(streamId)) {
       return;
     }
     currentStreams.add(streamId);
-    response.current = await fetch(url, await getRequestInit());
-    if (response.current.body === null) {
+
+    let response: Response | null = null;
+    response = await fetch(url, await getRequestInit());
+    if (!response.ok) {
+      return;
+    }
+
+    if (response.body === null) {
       throw new Error("No response body, could not stream data.");
     }
-    reader.current = response.current.body.getReader();
+    const reader = response.body.getReader();
 
     while (true) {
-      const chunk = await reader.current.read();
+      const chunk = await reader.read();
       if (chunk.done) {
         break;
       }
       callback(chunk.value);
     }
     currentStreams.delete(streamId);
-  }, [url, streamId]);
+  };
 
-  useEffect(() => {
+  const safeFetchThenProcess = async () => {
     onStart();
     try {
-      fetchThenProcess();
+      await fetchThenProcess();
     } catch (error) {
       console.warn("Error streaming data :", error);
     } finally {
       cleanUpLogic();
     }
     onEnd();
+  };
 
-    return cleanUpLogic;
-  }, [streamId, fetchThenProcess, cleanUpLogic]);
+  safeFetchThenProcess();
+  cleanUpLogic();
 };
 
-export { useStream };
+export { streamData };

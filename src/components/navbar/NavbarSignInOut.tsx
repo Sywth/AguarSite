@@ -5,7 +5,7 @@ import ThemeToggle from "../ThemeToggle";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { button_tw_css } from "../styleConstants";
+import { button_tw_css } from "../../lib/styleConstants";
 import TextDivider from "../TextDivider";
 
 type NavbarSignInOutProps = React.HTMLProps<HTMLDivElement> & {};

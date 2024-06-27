@@ -1,4 +1,4 @@
-import { hover_tw_css } from "@/components/styleConstants";
+import { hover_tw_css } from "@/lib/styleConstants";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 

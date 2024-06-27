@@ -10,4 +10,4 @@ const authFetch = (
   });
 };
 
-export default authFetch;
+export { authFetch };

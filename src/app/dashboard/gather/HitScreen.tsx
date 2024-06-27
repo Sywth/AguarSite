@@ -1,27 +1,23 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useStream } from "@/hooks/useStream";
-import { Aguar404, AguarHit } from "@/aguarTypes";
+import { AguarHit } from "@/aguarTypes";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { aguarApiUrl } from "@/components/clientConstants";
+import { aguarApiUrl } from "@/lib/clientConstants";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "@/components/ui/use-toast";
-import {
-  alt_background_tw_css,
-  button_tw_css,
-  hover_tw_css,
-} from "@/components/styleConstants";
+import { button_tw_css } from "@/lib/styleConstants";
+import { useStream } from "@/hooks/useStream";
+import codeToast from "@/lib/codeToat";
+import { streamData } from "@/lib/streamData";
 
-const GetDecoderFunction: () => (
-  data: Uint8Array
-) => AguarHit | undefined = () => {
+const GetDecoderFunction: () => (data: Uint8Array) => any = () => {
   const decoder = new TextDecoder();
   // cast to unit8array to json of shape AguarHit
   return (data: Uint8Array) => {
     try {
       const text = decoder.decode(data);
-      const json = JSON.parse(text) as AguarHit;
+      const json = JSON.parse(text);
       return json;
     } catch (e) {
       return undefined;
@@ -69,7 +65,7 @@ const Hit: React.FC<HitProps> = ({ hit, ...props }) => {
 };
 
 type HitScreenListProps = React.HTMLProps<HTMLDivElement> & {
-  hits: (AguarHit | undefined)[];
+  hits: any[];
   removeHitAtIndex: (index: number) => void;
 };
 const HitScreenList: React.FC<HitScreenListProps> = ({
@@ -77,15 +73,19 @@ const HitScreenList: React.FC<HitScreenListProps> = ({
   removeHitAtIndex,
   ...props
 }) => {
+  useEffect(() => {
+    toast({
+      title: `Search completed`,
+    });
+  }, []);
+
   return (
     <div {...props}>
       {hits.map((hit, index) => {
         if (hit === undefined) {
           return null;
         }
-
-        if (hit.hasOwnProperty("detail")) {
-          console.error("Request 404-ed", hit);
+        if (!hit.hasOwnProperty("aguar_type")) {
           return null;
         }
 
@@ -96,22 +96,11 @@ const HitScreenList: React.FC<HitScreenListProps> = ({
               <div
                 className={cn("cursor-pointer font-mono", button_tw_css)}
                 onClick={() => {
-                  toast({
-                    title: `Hit ${index + 1} details`,
-                    description: (
-                      <>
-                        <p>Original API response object looks like this</p>
-                        <pre
-                          className={cn(
-                            "mt-2 w-[340px] rounded-md p-2",
-                            alt_background_tw_css
-                          )}
-                        >
-                          <code>{JSON.stringify(hit, null, 2)}</code>
-                        </pre>
-                      </>
-                    ),
-                  });
+                  codeToast(
+                    `Hit ${index + 1} details`,
+                    `Original API response object looks like this`,
+                    JSON.stringify(hit, null, 2)
+                  );
                 }}
               >{`[?]`}</div>
               <div
@@ -139,19 +128,17 @@ const HitScreenList: React.FC<HitScreenListProps> = ({
 
 type HitScreenProps = React.HTMLProps<HTMLDivElement> & {
   username: string;
-  streamId: string;
   setUsername: (username: string) => void;
   setSearching: (searching: boolean) => void;
 };
 const HitScreen: React.FC<HitScreenProps> = ({
   username,
-  streamId,
   setUsername,
   setSearching,
   className,
   ...props
 }) => {
-  const [hits, setHits] = useState<(AguarHit | undefined)[]>([]);
+  const [hits, setHits] = useState<any[]>([]);
   const apiRoute = `${aguarApiUrl}/search-username/${username}`;
   const decoder = GetDecoderFunction();
   const { getToken } = useAuth();
@@ -165,29 +152,32 @@ const HitScreen: React.FC<HitScreenProps> = ({
     };
   };
 
-  const getLength = (arr: any[]) => {
-    return arr.length;
+  const streamCallback = (chunk: Uint8Array) => {
+    const hit = decoder(chunk);
+    setHits((hits) => [hit, ...hits]);
+  };
+  const onStart = () => {
+    codeToast(
+      `Searching for user ${username} ...`,
+      `This will take time, calling API with`,
+      JSON.stringify(username, null)
+    );
+    setSearching(true);
+  };
+  const onEnd = () => {
+    setSearching(false);
   };
 
-  useStream(
-    apiRoute,
-    getRequestInit,
-    (chunk) => {
-      const hit = decoder(chunk);
-      setHits((hits) => [hit, ...hits]);
-    },
-    () => {
-      setSearching(true);
-    },
-    () => {
-      toast({
-        title: `Search on ${username} completed`,
-        description: "All hits listed",
-      });
-      setSearching(false);
-    },
-    streamId
-  );
+  useEffect(() => {
+    streamData(
+      apiRoute,
+      getRequestInit,
+      streamCallback,
+      onStart,
+      onEnd,
+      username
+    );
+  }, [username]);
 
   const removeHitAtIndex = (index: number) => {
     setHits((hits) => {
@@ -197,7 +187,7 @@ const HitScreen: React.FC<HitScreenProps> = ({
     });
   };
 
-  const filterHits = (keepIf: (hit: AguarHit | undefined) => boolean) => {
+  const filterHits = (keepIf: (hit: any) => boolean) => {
     setHits((hits) => {
       const newHits = hits.filter(keepIf);
       return newHits;

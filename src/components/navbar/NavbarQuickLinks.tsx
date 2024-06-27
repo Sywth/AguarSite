@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { button_tw_css } from "../styleConstants";
+import { button_tw_css } from "../../lib/styleConstants";
 import TextDivider from "../TextDivider";
 
 type NavbarSignInOutProps = React.HTMLProps<HTMLDivElement> & {};

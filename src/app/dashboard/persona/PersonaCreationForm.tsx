@@ -1,6 +1,6 @@
 "use client";
 
-import { button_tw_css } from "@/components/styleConstants";
+import { button_tw_css } from "@/lib/styleConstants";
 import {
   Form,
   FormControl,

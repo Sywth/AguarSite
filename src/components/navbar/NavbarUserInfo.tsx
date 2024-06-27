@@ -1,7 +1,7 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import React from "react";
-import { button_tw_css } from "../styleConstants";
+import { button_tw_css } from "../../lib/styleConstants";
 import { cn } from "@/lib/utils";
 
 type NavbarUserInfoProps = React.HTMLProps<HTMLDivElement> & {};

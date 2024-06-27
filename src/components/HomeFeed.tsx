@@ -42,6 +42,8 @@ const StorySummary = ({
             style={{ width: "100%", height: "80%" }}
             src={imageUrl}
             alt={imageAlt}
+            width={9000}
+            height={700}
           />
         )}
         <h4 className="hidden md:block font-mono px-1 pt-1 italic">
