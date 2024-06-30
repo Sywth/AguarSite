@@ -1,1 +1,1 @@
-export const aguarApiUrl = "http://127.0.0.1:4200";
+export const aguarApiUrl = "http://64.226.97.173:8000";
