@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { useOnScreen } from "@/hooks/useOnScreen";
 import Link from "next/link";
 import shuffleArray from "shuffle-array";
+import Image from "next/image";
 
 type StorySummaryProps = React.HTMLProps<HTMLDivElement> & {
   title: string;
@@ -36,14 +37,18 @@ const StorySummary = ({
     <div {...props} ref={storyRef}>
       <div>
         {hasImage && (
-          <img
+          <Image
             className="object-cover object-center"
             style={{ width: "100%", height: "80%" }}
             src={imageUrl}
             alt={imageAlt}
+            width={9000}
+            height={700}
           />
         )}
-        <h4 className="font-mono px-1 pt-1 italic">{imageAlt}</h4>
+        <h4 className="hidden md:block font-mono px-1 pt-1 italic">
+          {imageAlt}
+        </h4>
       </div>
       <div className="flex flex-col px-4 lg:px-8">
         {isOnScreen && (

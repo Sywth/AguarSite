@@ -6,7 +6,7 @@ import Logo from "../../../public/svgs/Logo";
 import NavbarQuickLinks from "./NavbarQuickLinks";
 import { cn } from "@/lib/utils";
 import TextDivider from "../TextDivider";
-import { hover_tw_css } from "../style_constants";
+import { hover_tw_css } from "../../lib/styleConstants";
 
 type NavbarLogoProps = {
   className?: string;
@@ -14,7 +14,11 @@ type NavbarLogoProps = {
 const NavbarLogo: React.FC<NavbarLogoProps> = ({ className }) => {
   return (
     <Link
-      className={cn("flex flex-row  items-center ", className, hover_tw_css)}
+      className={cn(
+        "hidden md:flex flex-row  items-center ",
+        className,
+        hover_tw_css
+      )}
       href="/"
     >
       <Logo className="h-12 w-12 px-3" />
@@ -31,7 +35,7 @@ export type NavbarProps = React.HTMLProps<HTMLDivElement> & {};
 export const Navbar: React.FC<NavbarProps> = ({ ...props }) => {
   return (
     <div {...props}>
-      <div className="flex justify-between items-start ">
+      <div className="flex justify-between items-start">
         <div>
           <NavbarLogo />
           <NavbarQuickLinks />

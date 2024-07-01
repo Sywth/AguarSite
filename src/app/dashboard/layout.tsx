@@ -1,4 +1,4 @@
-import { hover_tw_css } from "@/components/style_constants";
+import { hover_tw_css } from "@/lib/styleConstants";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 
@@ -6,6 +6,9 @@ type DrawerHeaderProps = React.HTMLProps<HTMLUListElement> & {};
 const DrawerHeaderTop: React.FC<DrawerHeaderProps> = ({ ...props }) => {
   return (
     <ul {...props}>
+      <li>
+        <Link href="/">Home</Link>
+      </li>
       <li>
         <Link href="/dashboard/persona">Persona</Link>
       </li>
@@ -33,21 +36,21 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="drawer z-10">
+    <div className="drawer">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           <label
             htmlFor="dashboard-drawer"
-            className="drawer-button cursor-pointer"
+            className="drawer-button cursor-pointer max-h-[50px] bg-zinc-100 dark:bg-zinc-900 rounded-md"
             aria-label="open sidebar"
           >
             <Menu size={50} className={hover_tw_css} />
           </label>
-          <div className="">{children}</div>
+          <div className="pt-4 md:pt-0">{children}</div>
         </div>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-20">
         <label
           htmlFor="dashboard-drawer"
           aria-label="close sidebar"

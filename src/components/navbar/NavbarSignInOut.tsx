@@ -5,7 +5,7 @@ import ThemeToggle from "../ThemeToggle";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { button_tw_css } from "../style_constants";
+import { button_tw_css } from "../../lib/styleConstants";
 import TextDivider from "../TextDivider";
 
 type NavbarSignInOutProps = React.HTMLProps<HTMLDivElement> & {};
@@ -25,7 +25,7 @@ const NavbarSignInOut: React.FC<NavbarSignInOutProps> = ({
   };
 
   return (
-    <div className="flex flex-row justify-end font-mono">
+    <div className="hidden md:flex flex-row justify-end font-mono">
       <ThemeToggle className={cn(button_tw_css, `px-4 cursor-pointer`)} />
 
       <div>|</div>

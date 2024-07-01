@@ -7,7 +7,7 @@ import io from "socket.io-client";
 const Playground = () => {
   return (
     <>
-      <PalantirTextEffect className="pl-8" text={"Playground"} />
+      <PalantirTextEffect className="md:pl-8" text={"Playground"} />
       <div className="text-4xl py-16">Under development</div>
     </>
   );
